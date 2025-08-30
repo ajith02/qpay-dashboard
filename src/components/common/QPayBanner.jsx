@@ -1,7 +1,14 @@
 import { Box, Typography, Button, useTheme } from "@mui/material";
-import Banner from "../../assets/banner.png";
 
-const QPayBanner = () => {
+const QPayBanner = ({
+  image,
+  imageHeight = { xs: 120, sm: 150 },
+  imageWidth = "auto",
+  title = "Pay ₹1/month* for the QPay POS Device",
+  subtitle = "One device for accepting all modes of payments",
+  buttonLabel = "Download App Now!",
+  onButtonClick,
+}) => {
   const theme = useTheme();
 
   return (
@@ -44,7 +51,7 @@ const QPayBanner = () => {
             fontSize: { xs: "1rem", sm: "1.5rem" },
           }}
         >
-          Pay ₹1/month* for the QPay POS Device
+          {title}
         </Typography>
 
         <Typography
@@ -54,11 +61,12 @@ const QPayBanner = () => {
             mb: 2,
           }}
         >
-          One device for accepting all modes of payments
+          {subtitle}
         </Typography>
 
         <Button
           variant="contained"
+          onClick={onButtonClick}
           sx={{
             backgroundColor: "white",
             color: "#42794A",
@@ -73,42 +81,44 @@ const QPayBanner = () => {
             "&:hover": { backgroundColor: "#f3f4f6" },
           }}
         >
-          Download App Now!
+          {buttonLabel}
         </Button>
       </Box>
 
       {/* Right Image Section */}
-      <Box
-        sx={{
-          flex: { xs: "unset", sm: 0.6 },
-          display: { xs: "none", sm: "flex" }, // 👈 hides on mobile
-          justifyContent: "center",
-          alignItems: "flex-end",
-          width: "100%",
-          mt: { xs: 2, sm: 0 },
-        }}
-      >
+      {image && (
         <Box
           sx={{
-            position: { xs: "relative", sm: "absolute" },
-            bottom: { sm: -10 },
-            right: { sm: 50, lg: 100 },
-            display: "flex",
+            flex: { xs: "unset", sm: 0.6 },
+            display: { xs: "none", sm: "flex" },
             justifyContent: "center",
+            alignItems: "flex-end",
+            width: "100%",
+            mt: { xs: 2, sm: 0 },
           }}
         >
           <Box
-            component="img"
-            src={Banner}
-            alt="QPay POS Device Illustration"
             sx={{
-              maxHeight: { xs: 120, sm: 150 },
-              width: "auto",
-              objectFit: "contain",
+              position: { xs: "relative", sm: "absolute" },
+              bottom: { sm: -10 },
+              right: { sm: 50, lg: 100 },
+              display: "flex",
+              justifyContent: "center",
             }}
-          />
+          >
+            <Box
+              component="img"
+              src={image}
+              alt="Banner Illustration"
+              sx={{
+                maxHeight: imageHeight,
+                width: imageWidth,
+                objectFit: "contain",
+              }}
+            />
+          </Box>
         </Box>
-      </Box>
+      )}
     </Box>
   );
 };

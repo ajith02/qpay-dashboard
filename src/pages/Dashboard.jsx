@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import ProfileCard from "../components/dashboard/ProfileCard";
-import QPayBanner from "../components/dashboard/QPayBanner";
 import QRCard from "../components/dashboard/QRCard";
 import StatCard from "../components/dashboard/StatCard";
 import TransactionCard from "../components/dashboard/TransactionCard";
+import BannerImage from "../assets/dashboardBanner.png";
+import QPayBanner from "../components/common/QPayBanner";
 
 const Dashboard = () => {
   const statsData = [
@@ -27,7 +28,13 @@ const Dashboard = () => {
 
   return (
     <>
-      <QPayBanner />
+      <QPayBanner
+        image={BannerImage}
+        title="Pay ₹1/month* for the QPay POS Device"
+        subtitle="One device for accepting all modes of payments"
+        buttonLabel="Download App Now!"
+        onButtonClick={() => console.log("Button clicked!")}
+      />
 
       {/* Stats Section */}
       <Box
