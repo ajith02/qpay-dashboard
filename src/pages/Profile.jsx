@@ -6,6 +6,13 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileCard from "../components/profile/ProfileCard";
 import { Box } from "@mui/material";
+import Services from "../components/profile/Services";
+import { VolumeUp, PointOfSale } from "@mui/icons-material";
+import SmartSpeakers from "../assets/smartSpeakers.png";
+import POS from "../assets/pos.png";
+import Settings from "../assets/settings.png";
+import User from "../assets/users.png";
+import Language from "../assets/language.png";
 
 const Profile = () => {
   const cards = [
@@ -28,6 +35,32 @@ const Profile = () => {
       icon: <ShoppingCartIcon />,
       title: "Order QR",
       subtitle: "Get paid, manage & order QRs",
+    },
+  ];
+
+  const serviceData = [
+    {
+      title: "Smart Speaker",
+      image: SmartSpeakers,
+    },
+    {
+      title: "POS Machine",
+      image: POS,
+    },
+  ];
+
+  const businessData = [
+    {
+      title: "Payment Settings",
+      image: Settings,
+    },
+    {
+      title: "Manage Staff",
+      image: User,
+    },
+    {
+      title: "Change Language",
+      image: Language,
     },
   ];
 
@@ -58,6 +91,30 @@ const Profile = () => {
         {cards.map((card, index) => (
           <ProfileCard key={index} {...card} />
         ))}
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 2,
+          mt: 2,
+        }}
+      >
+        <Box
+          sx={{
+            flex: { xs: "1 1 100%", sm: "1 1 48%" }, // full width on mobile, ~50% on sm+
+          }}
+        >
+          <Services data={serviceData} title="Business Services" />
+        </Box>
+        <Box
+          sx={{
+            flex: { xs: "1 1 100%", sm: "1 1 48%" }, // full width on mobile, ~50% on sm+
+          }}
+        >
+          <Services data={businessData} title="Manage Business" />
+        </Box>
       </Box>
     </div>
   );
