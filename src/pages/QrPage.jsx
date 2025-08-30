@@ -1,11 +1,11 @@
-import React from 'react'
+import ManageQrPos from "../components/qr/ManageQrPos";
 
 const QrPage = () => {
   return (
     <div>
-      Qr Page
+      <ManageQrPos />
     </div>
-  )
-}
+  );
+};
 
 export default QrPage;
