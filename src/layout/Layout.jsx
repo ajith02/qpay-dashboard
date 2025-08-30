@@ -25,6 +25,7 @@ const Layout = () => {
           sx={{
             display: { xs: "none", md: "block" },
             flexShrink: 0,
+            zIndex: 1
           }}
         >
           <Sidebar />
@@ -34,7 +35,6 @@ const Layout = () => {
           component="main"
           sx={{
             flexGrow: 1,
-            overflowY: "auto",
           }}
         >
           <Outlet />

@@ -2,6 +2,8 @@ import React from "react";
 import QPayBanner from "../components/dashboard/QPayBanner";
 import { Box, Grid } from "@mui/material";
 import StatCard from "../components/dashboard/StatCard";
+import ProfileCard from "../components/dashboard/ProfileCard";
+import QRCard from "../components/dashboard/QRCard";
 
 const Dashboard = () => {
   const statsData = [
@@ -15,18 +17,46 @@ const Dashboard = () => {
     <>
       <QPayBanner />
 
+      {/* Stats Section */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 2,
-          paddingBlock: 2
+          paddingBlock: 2,
         }}
       >
         {statsData.map((stat, index) => (
           <StatCard key={index} value={stat.value} label={stat.label} />
         ))}
+      </Box>
+
+      {/* Cards Section */}
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 2,
+        }}
+      >
+        {/* ProfileCard */}
+        <Box
+          sx={{
+            flex: { xs: "1 1 100%", sm: "1 1 48%" }, // full width on mobile, ~50% on sm+
+          }}
+        >
+          <ProfileCard />
+        </Box>
+
+        {/* QRCard */}
+        <Box
+          sx={{
+            flex: { xs: "1 1 100%", sm: "1 1 48%" },
+          }}
+        >
+          <QRCard />
+        </Box>
       </Box>
     </>
   );
