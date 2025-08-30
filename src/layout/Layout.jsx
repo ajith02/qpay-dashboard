@@ -11,17 +11,29 @@ const Layout = () => {
       <Navbar />
 
       {/* Sidebar + Main content */}
-      <Box sx={{ display: "flex", flex: 1, gap: "10px", margin: "1rem" }}>
-        {/* Sidebar full height */}
-        <Sidebar />
-
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1,
+          gap: "2rem",
+          m: "1rem",
+          height: "calc(100vh - 64px)",
+        }}
+      >
+        {/* Sidebar - hidden on xs */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "block" },
+            flexShrink: 0,
+          }}
+        >
+          <Sidebar />
+        </Box>
         {/* Main content */}
         <Box
           component="main"
           sx={{
-            flex: 1,
-            p: 2,
-            bgcolor: "background.default",
+            flexGrow: 1,
             overflowY: "auto",
           }}
         >

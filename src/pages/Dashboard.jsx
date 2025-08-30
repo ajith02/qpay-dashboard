@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import QPayBanner from "../components/dashboard/QPayBanner";
 
 const Dashboard = () => {
   return (
     <div>
-      Dashboard
+      <QPayBanner />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

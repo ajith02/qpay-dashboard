@@ -3,16 +3,27 @@ import {
   Avatar,
   Box,
   IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
   useTheme,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useState } from "react";
 import logo from "../assets/logo.png";
 import user from "../assets/user.png";
 
 const Navbar = () => {
   const theme = useTheme();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar
@@ -22,7 +33,7 @@ const Navbar = () => {
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
         boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-        paddingInline: "1rem"
+        paddingInline: "1rem",
       }}
     >
       <Toolbar
@@ -31,7 +42,7 @@ const Navbar = () => {
           justifyContent: "space-between",
           alignItems: "center",
           minHeight: "64px",
-          px: 3,
+          px: { xs: 1, md: 3 },
         }}
       >
         {/* Left - Logo */}
@@ -47,18 +58,22 @@ const Navbar = () => {
             gap: 1.5,
           }}
         >
-          <Avatar
-            alt="User"
-            src={user}
-            sx={{
-              width: 40,
-              height: 40,
-            }}
-          />
+          {/* Avatar - always visible */}
+          <IconButton onClick={handleOpen} sx={{ p: 0 }}>
+            <Avatar
+              alt="User"
+              src={user}
+              sx={{
+                width: 40,
+                height: 40,
+              }}
+            />
+          </IconButton>
 
+          {/* Desktop Details */}
           <Box
             sx={{
-              display: "flex",
+              display: { xs: "none", sm: "flex" }, // hide on mobile
               flexDirection: "column",
               lineHeight: 1.2,
               mr: 0.5,
@@ -74,7 +89,53 @@ const Navbar = () => {
               Hello
             </Typography>
             <Typography
-              variant="body1"
+              sx={{
+               fontWeight: theme.typography.h3.fontWeight,
+                fontSize: "0.9rem",
+                color: theme.palette.text.black,
+              }}
+            >
+              Thomas Shelby
+            </Typography>
+          </Box>
+
+          {/* Desktop Dropdown Icon */}
+          <IconButton
+            size="small"
+            sx={{
+              color: theme.palette.text.secondary,
+              p: 0.5,
+              display: { xs: "none", sm: "inline-flex" }, // hide on mobile
+            }}
+          >
+            <KeyboardArrowDownIcon fontSize="small" />
+          </IconButton>
+        </Box>
+      </Toolbar>
+
+      {/* Mobile Popup Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        sx={{ display: { xs: "block", sm: "none" } }} // only mobile
+      >
+        <MenuItem >
+          <Box
+            sx={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}
+          >
+            <Typography
+              variant="caption"
+              sx={{
+                color: theme.palette.text.secondary,
+                fontSize: "0.75rem",
+              }}
+            >
+              Hello
+            </Typography>
+            <Typography
               sx={{
                 fontWeight: theme.typography.h3.fontWeight,
                 fontSize: "0.9rem",
@@ -84,18 +145,8 @@ const Navbar = () => {
               Thomas Shelby
             </Typography>
           </Box>
-
-          <IconButton
-            size="small"
-            sx={{
-              color: theme.palette.text.secondary,
-              p: 0.5,
-            }}
-          >
-            <KeyboardArrowDownIcon fontSize="small" />
-          </IconButton>
-        </Box>
-      </Toolbar>
+        </MenuItem>
+      </Menu>
     </AppBar>
   );
 };

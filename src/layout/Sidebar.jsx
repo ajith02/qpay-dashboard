@@ -68,12 +68,13 @@ const Sidebar = () => {
       sx={{
         width: 260,
         flexShrink: 0,
+        height: "100%",
         [`& .MuiDrawer-paper`]: {
           width: 260,
           boxSizing: "border-box",
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.primary,
-          borderRadius: "12px", // ✅ consistent rounding
+          borderRadius: "12px",
           position: "relative",
           display: "flex",
           flexDirection: "column",
@@ -84,7 +85,6 @@ const Sidebar = () => {
     >
       <Box sx={{ overflow: "auto", p: 2 }}>
         <List sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-          {/* Home */}
           {/* Home */}
           <ListItemButton
             onClick={() => navigate("/")}
