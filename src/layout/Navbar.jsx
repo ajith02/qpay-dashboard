@@ -27,7 +27,8 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
+      top="0"
       elevation={0}
       sx={{
         backgroundColor: theme.palette.background.paper,
@@ -90,7 +91,7 @@ const Navbar = () => {
             </Typography>
             <Typography
               sx={{
-               fontWeight: theme.typography.h3.fontWeight,
+                fontWeight: theme.typography.h3.fontWeight,
                 fontSize: "0.9rem",
                 color: theme.palette.text.black,
               }}
@@ -122,7 +123,7 @@ const Navbar = () => {
         transformOrigin={{ vertical: "top", horizontal: "right" }}
         sx={{ display: { xs: "block", sm: "none" } }} // only mobile
       >
-        <MenuItem >
+        <MenuItem>
           <Box
             sx={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}
           >
