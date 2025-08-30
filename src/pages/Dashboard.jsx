@@ -5,8 +5,11 @@ import StatCard from "../components/dashboard/StatCard";
 import TransactionCard from "../components/dashboard/TransactionCard";
 import BannerImage from "../assets/dashboardBanner.png";
 import QPayBanner from "../components/common/QPayBanner";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  
   const statsData = [
     { value: "1.5k", label: "Account Holders" },
     { value: "2.1k", label: "Transactions" },
@@ -97,7 +100,7 @@ const Dashboard = () => {
             totalAmount="₹1,23,816.19"
             transactions={settlementData}
             buttonLabel="Settle Now"
-            onButtonClick={() => console.log("Settle clicked")}
+            onButtonClick={() => navigate("/history")}
           />
         </Box>
 

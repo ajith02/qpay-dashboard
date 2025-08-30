@@ -7,9 +7,11 @@ import {
   useTheme,
 } from "@mui/material";
 import QRImage from "../../assets/qr.png";
+import { useNavigate } from "react-router-dom";
 
 const QRCard = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Paper
@@ -94,6 +96,7 @@ const QRCard = () => {
       <Divider />
       {/* Button */}
       <Button
+        onClick={() => navigate("/qr")}
         fullWidth
         variant="contained"
         sx={{

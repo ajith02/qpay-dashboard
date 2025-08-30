@@ -1,9 +1,15 @@
+import React, { useState } from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme, Dialog } from "@mui/material";
 import Time from "../../assets/time.png";
+import SettleNow from "./SettleNow";
 
 const NotificationBar = () => {
   const theme = useTheme();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box
@@ -18,7 +24,7 @@ const NotificationBar = () => {
       mb={3}
       gap={2}
     >
-      {/* Text Section with AccessTimeIcon */}
+      {/* Text Section */}
       <Typography
         sx={{
           color: theme.palette.text.secondary,
@@ -45,7 +51,7 @@ const NotificationBar = () => {
         Tomorrow.
       </Typography>
 
-      {/* Button with image instead of icon */}
+      {/* Settle Now Button */}
       <Button
         variant="contained"
         startIcon={
@@ -62,9 +68,21 @@ const NotificationBar = () => {
           mt: { xs: 1, sm: 0 },
           width: { xs: "100%", sm: "auto" },
         }}
+        onClick={handleOpen}
       >
         Settle Now!
       </Button>
+
+      {/* Dialog with entire SettleNow component */}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth
+        maxWidth="md"
+        scroll="paper"
+      >
+        <SettleNow onClose={handleClose} />
+      </Dialog>
     </Box>
   );
 };
