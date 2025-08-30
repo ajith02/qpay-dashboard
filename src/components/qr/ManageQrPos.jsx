@@ -19,25 +19,13 @@ const ManageQrPos = () => {
 
   return (
     <Box sx={{ mb: 3 }}>
-      <Typography
-        sx={{
-          fontSize: "1.1rem",
-          fontWeight: 600,
-          mb: 1,
-          color: theme.palette.text.black,
-          letterSpacing: "1px",
-        }}
-      >
-        Manage QR/POS
-      </Typography>
-
+      
       <Card
         sx={{
           p: { xs: 2, sm: 3 },
           borderRadius: "12px",
           border: `1px solid ${theme.palette.divider}`,
           boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-          maxWidth: 400,
         }}
       >
         <Box
