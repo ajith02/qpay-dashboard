@@ -16,7 +16,7 @@ const theme = createTheme({
       contrastText: "#FFFFFF",
     },
     background: {
-      default: "#F9FAFB", // Page background
+      default: "#FFFFFF", // Page background
       paper: "#FFFFFF",   // Card background
     },
     text: {

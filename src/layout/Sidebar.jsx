@@ -126,7 +126,7 @@ const Sidebar = () => {
                 : "transparent",
             }}
           >
-            <ListItemButton onClick={() => navigate("/history/transactions")}>
+            <ListItemButton onClick={() => navigate("/history")}>
               <ListItemIcon sx={{ minWidth: 40 }}>
                 <img src={HistoryIcon} alt="History" width={22} height={22} />
               </ListItemIcon>
@@ -148,7 +148,7 @@ const Sidebar = () => {
                       ? activeStyle
                       : {}),
                   }}
-                  onClick={() => navigate("/history/transactions")}
+                  onClick={() => navigate("/history")}
                 >
                   <ListItemText
                     primary="Transaction History"
@@ -169,7 +169,7 @@ const Sidebar = () => {
                       ? activeStyle
                       : {}),
                   }}
-                  onClick={() => navigate("/history/settlements")}
+                  onClick={() => navigate("/history")}
                 >
                   <ListItemText
                     primary="Settlement History"
