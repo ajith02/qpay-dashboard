@@ -22,8 +22,12 @@ const QRCard = () => {
     >
       {/* Title */}
       <Typography
-        variant="subtitle2"
-        sx={{ color: "text.secondary", mb: 2, fontWeight: 500 }}
+        sx={{
+          color: theme.palette.text.secondary,
+          mb: 2,
+          fontSize: "1rem",
+          fontWeight: 500,
+        }}
       >
         QR
       </Typography>
@@ -52,8 +56,8 @@ const QRCard = () => {
             src={QRImage}
             alt="Order QR"
             sx={{
-              width: 140,
-              height: 120,
+              width: { xs: 140, sm: 165, md: 150, lg: 140 },
+              height: { xs: 140, sm: 165, md: 150, lg: 140 },
               objectFit: "contain",
               borderRadius: "8px",
             }}
@@ -93,6 +97,7 @@ const QRCard = () => {
         fullWidth
         variant="contained"
         sx={{
+          fontSize: "1rem",
           mt: 3,
           borderRadius: "8px",
           backgroundColor: "#42794A",

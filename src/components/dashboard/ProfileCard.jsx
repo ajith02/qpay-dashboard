@@ -24,8 +24,12 @@ const ProfileCard = () => {
     >
       {/* Title */}
       <Typography
-        variant="subtitle2"
-        sx={{ color: "text.secondary", mb: 2, fontWeight: 500 }}
+        sx={{
+          color: theme.palette.text.secondary,
+          mb: 2,
+          fontSize: "1rem",
+          fontWeight: 500,
+        }}
       >
         PROFILE
       </Typography>
@@ -54,10 +58,10 @@ const ProfileCard = () => {
             <CircularProgress
               variant="determinate"
               value={100}
-              size={120}
+              size={140}
               thickness={5}
               sx={{
-                color: "#e0e0e0", // grey background
+                color: "#e0e0e0",
                 position: "absolute",
               }}
             />
@@ -65,7 +69,7 @@ const ProfileCard = () => {
             <CircularProgress
               variant="determinate"
               value={progress}
-              size={120}
+              size={140}
               thickness={5}
               sx={{
                 color: "#61CE70",
@@ -129,6 +133,7 @@ const ProfileCard = () => {
         fullWidth
         variant="contained"
         sx={{
+          fontSize: "1rem",
           mt: 3,
           borderRadius: "8px",
           backgroundColor: "#42794A",
