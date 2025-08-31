@@ -1,5 +1,10 @@
 // api/transactions.js
 import axios from "axios";
+import https from "https";
+
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+});
 
 export default async function handler(req, res) {
   const { service_id = 111, page = 0 } = req.query;
@@ -18,6 +23,7 @@ export default async function handler(req, res) {
           "Cache-Control": "no-cache",
         },
         params: { service_id, page },
+        httpsAgent
       }
     );
 
