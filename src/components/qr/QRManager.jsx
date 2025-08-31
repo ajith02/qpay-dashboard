@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles";
 
 import TabPanel from "./TabPanel";
 import QRCard from "./QRCard";
-import qr from "../../assets/QR.png";
+import qr from "../../assets/Qr.png";
 
 
 const QRManager = () => {
