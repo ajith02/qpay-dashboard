@@ -6,17 +6,17 @@ export default async function handler(req, res) {
   const token = process.env.VITE_WALLET_TOKEN;
 
   const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,   // bypass invalid SSL
-    checkServerIdentity: () => undefined,
+    rejectUnauthorized: false,
+    checkServerIdentity: () => undefined, // disable hostname check
   });
 
   try {
     const response = await axios.get(
-      "http://64.227.189.27/wallet/api/v1/transaction_history",
+      "https://64.227.189.27/wallet/api/v1/transaction_history", // must be HTTPS
       {
         headers: { Authorization: `Bearer ${token}` },
         params: { service_id, page },
-        httpsAgent,
+        httpsAgent, // pass custom agent
       }
     );
     res.status(200).json(response.data);
