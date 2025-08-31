@@ -1,16 +1,13 @@
-import React from "react";
-import AppRoutes from "./routes/AppRoutes"; // import your routes
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import theme from "./theme/theme"; // your custom MUI theme
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+import theme from "./theme/theme";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* CssBaseline gives consistent styling across browsers */}
       <CssBaseline />
 
-      {/* All routes defined here */}
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>

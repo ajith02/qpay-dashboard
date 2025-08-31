@@ -4,11 +4,11 @@ import TransactionTable from "../components/history/TransactionTable";
 
 const History = () => {
   return (
-    <div>
+    <>
       <Header />
       <NotificationBar />
-       <TransactionTable />
-    </div>
+      <TransactionTable />
+    </>
   );
 };
 

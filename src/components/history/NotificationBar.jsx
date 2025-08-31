@@ -67,6 +67,7 @@ const NotificationBar = () => {
           bgcolor: theme.palette.primary.main,
           mt: { xs: 1, sm: 0 },
           width: { xs: "100%", sm: "auto" },
+          textWrap: "nowrap",
         }}
         onClick={handleOpen}
       >

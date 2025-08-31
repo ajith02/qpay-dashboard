@@ -4,6 +4,7 @@ import QrPage from "../pages/QrPage";
 import History from "../pages/History";
 import Profile from "../pages/Profile";
 import Layout from "../layout/Layout";
+import { TransactionProvider } from "../contexts/TransactionContext";
 
 const AppRoutes = () => {
   return (
@@ -12,7 +13,14 @@ const AppRoutes = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/qr" element={<QrPage />} />
-        <Route path="/history" element={<History />} />
+        <Route
+          path="/history"
+          element={
+            <TransactionProvider>
+              <History />
+            </TransactionProvider>
+          }
+        />
         <Route path="/profile" element={<Profile />} />
       </Route>
     </Routes>
