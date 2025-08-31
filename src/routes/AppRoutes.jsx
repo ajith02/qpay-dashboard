@@ -7,6 +7,7 @@ const Dashboard = lazy(() => import("../pages/Dashboard"));
 const QrPage = lazy(() => import("../pages/QrPage"));
 const History = lazy(() => import("../pages/History"));
 const Profile = lazy(() => import("../pages/Profile"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes = () => {
   return (
@@ -47,6 +48,14 @@ const AppRoutes = () => {
           }
         />
       </Route>
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };

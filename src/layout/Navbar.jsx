@@ -19,6 +19,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import logo from "../assets/logo.png";
 import user from "../assets/user.png";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom"; 
 
 const Navbar = () => {
   const theme = useTheme();
@@ -60,12 +61,14 @@ const Navbar = () => {
         >
           {/* Left - Logo */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={logo}
-              alt="QPay Logo"
-              style={{ height: 40 }}
-              loading="lazy"
-            />
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <img
+                src={logo}
+                alt="QPay Logo"
+                style={{ height: 40, cursor: "pointer" }}
+                loading="lazy"
+              />
+            </Link>
           </Box>
 
           {/* Right - Desktop & Mobile */}
@@ -169,7 +172,7 @@ const Navbar = () => {
         anchor="left"
         open={drawerOpen}
         onClose={toggleDrawer(false)}
-        ModalProps={{ keepMounted: true }} 
+        ModalProps={{ keepMounted: true }}
       >
         <Sidebar onItemClick={toggleDrawer(false)} />
       </Drawer>

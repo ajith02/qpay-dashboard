@@ -18,7 +18,6 @@ import { useTransaction } from "../../contexts/TransactionContext";
 import { formatDate } from "../../utils/dateFormatter";
 import TransactionSkeleton from "../skeleton/TransactionSkeleton";
 
-
 // Helper for status colors
 const getStatusColor = (status) => {
   switch (status.toUpperCase()) {
@@ -245,11 +244,19 @@ const TransactionTable = () => {
               color="primary"
               siblingCount={0}
               boundaryCount={1}
+              sx={{
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#366b3c",
+                  },
+                },
+              }}
             />
           </Box>
         </>
       ) : (
-        <Box sx={{  mb: 5 }}>
+        <Box sx={{ mb: 5 }}>
           <TableContainer
             sx={{
               borderRadius: 2,
@@ -300,6 +307,14 @@ const TransactionTable = () => {
               color="primary"
               siblingCount={0}
               boundaryCount={1}
+              sx={{
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#366b3c",
+                  },
+                },
+              }}
             />
           </Stack>
         </Box>
