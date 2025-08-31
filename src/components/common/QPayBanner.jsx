@@ -1,6 +1,7 @@
+import React from "react";
 import { Box, Typography, Button, useTheme } from "@mui/material";
 
-const QPayBanner = ({
+const QPayBanner = React.memo(({
   image,
   imageHeight = { xs: 120, sm: 150 },
   imageWidth = "auto",
@@ -110,6 +111,7 @@ const QPayBanner = ({
               component="img"
               src={image}
               alt="Banner Illustration"
+              loading="lazy" // Lazy load image
               sx={{
                 maxHeight: imageHeight,
                 width: imageWidth,
@@ -121,6 +123,6 @@ const QPayBanner = ({
       )}
     </Box>
   );
-};
+});
 
 export default QPayBanner;

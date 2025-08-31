@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+
+import { Box, Button, Typography, Dialog, useTheme } from "@mui/material";
+
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Box, Button, Typography, useTheme, Dialog } from "@mui/material";
+
 import Time from "../../assets/time.png";
 import SettleNow from "./SettleNow";
 
@@ -88,4 +91,4 @@ const NotificationBar = () => {
   );
 };
 
-export default NotificationBar;
+export default React.memo(NotificationBar);

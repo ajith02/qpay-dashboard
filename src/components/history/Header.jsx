@@ -1,5 +1,4 @@
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import React from "react";
 import {
   Box,
   Button,
@@ -9,6 +8,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+
+import SearchIcon from "@mui/icons-material/Search";
+import FilterListIcon from "@mui/icons-material/FilterList";
 
 const Header = () => {
   const theme = useTheme();
@@ -93,4 +95,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

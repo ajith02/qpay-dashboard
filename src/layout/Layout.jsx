@@ -1,42 +1,30 @@
-import React from "react";
 import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
+const layoutStyles = {
+  container: { display: "flex", flexDirection: "column", height: "100vh" },
+  contentWrapper: {
+    display: "flex",
+    flex: 1,
+    gap: "2rem",
+    m: "1rem",
+    height: "calc(100vh - 64px)",
+  },
+  mainContent: { flexGrow: 1 },
+  sidebar: { display: { xs: "none", md: "block" }, flexShrink: 0, zIndex: 1 },
+};
+
 const Layout = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      {/* Navbar on top */}
+    <Box sx={layoutStyles.container}>
       <Navbar />
-
-      {/* Sidebar + Main content */}
-      <Box
-        sx={{
-          display: "flex",
-          flex: 1,
-          gap: "2rem",
-          m: "1rem",
-          height: "calc(100vh - 64px)",
-        }}
-      >
-        {/* Sidebar - hidden on xs */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "block" },
-            flexShrink: 0,
-            zIndex: 1
-          }}
-        >
+      <Box sx={layoutStyles.contentWrapper}>
+        <Box sx={layoutStyles.sidebar}>
           <Sidebar />
         </Box>
-        {/* Main content */}
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-          }}
-        >
+        <Box component="main" sx={layoutStyles.mainContent}>
           <Outlet />
         </Box>
       </Box>

@@ -1,5 +1,7 @@
-// ProfileCard.jsx
-import { Box, Typography, Paper, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import { useTheme } from "@mui/material/styles";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const ProfileCard = ({ icon, title, subtitle }) => {

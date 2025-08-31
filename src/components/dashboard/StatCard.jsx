@@ -1,4 +1,7 @@
-import { Paper, Typography, useTheme } from "@mui/material";
+import React from "react";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 const StatCard = ({ value, label }) => {
   const theme = useTheme();
@@ -40,4 +43,4 @@ const StatCard = ({ value, label }) => {
   );
 };
 
-export default StatCard;
+export default React.memo(StatCard);

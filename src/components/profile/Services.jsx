@@ -1,4 +1,9 @@
-import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
+import React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 const Services = ({ data, title }) => {
   const theme = useTheme();
@@ -22,10 +27,16 @@ const Services = ({ data, title }) => {
         {title.toUpperCase()}
       </Typography>
 
-      <Grid container spacing={{ xs: 2, sm: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: { xs: 2, sm: 3 },
+          justifyContent: "flex-start",
+        }}
+      >
         {data.map((service, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            {/* Parent Card with border */}
+          <Grid key={index}>
             <Box
               sx={{
                 maxWidth: 70,
@@ -34,7 +45,6 @@ const Services = ({ data, title }) => {
                 alignItems: "center",
               }}
             >
-              {/* Small inner card for image/icon */}
               <Box
                 sx={{
                   width: 60,
@@ -53,6 +63,7 @@ const Services = ({ data, title }) => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    loading="lazy" // lazy load images
                     style={{
                       objectFit: "contain",
                     }}
@@ -60,7 +71,6 @@ const Services = ({ data, title }) => {
                 )}
               </Box>
 
-              {/* Text below inner card */}
               <Typography
                 sx={{
                   fontSize: "0.75rem",
@@ -75,9 +85,9 @@ const Services = ({ data, title }) => {
             </Box>
           </Grid>
         ))}
-      </Grid>
+      </Box>
     </Card>
   );
 };
 
-export default Services;
+export default React.memo(Services);

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { Tabs, Tab, Box, Button, useTheme } from "@mui/material";
+
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
+
 import TabPanel from "./TabPanel";
 import QRCard from "./QRCard";
 import qr from "../../assets/qr.png";
+
 
 const QRManager = () => {
   const theme = useTheme();

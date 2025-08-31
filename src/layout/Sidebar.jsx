@@ -1,31 +1,33 @@
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+// MUI barrel imports
 import {
   Box,
+  Collapse,
   Drawer,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Collapse,
   useTheme,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
-// 🔹 Icons (SVG imports)
-import HomeIcon from "../assets/Home.svg";
-import QrIcon from "../assets/Qr.svg";
-import HistoryIcon from "../assets/History.svg";
-import ProfileIcon from "../assets/Profile.svg";
+// Assets
 import BharatLogo from "../assets/Bharat_Connect_Logo.svg";
+import dashboard from "../assets/dashboard.png";
+import HistoryIcon from "../assets/History.svg";
+import HomeIcon from "../assets/Home.svg";
+import ProfileIcon from "../assets/Profile.svg";
+import QrIcon from "../assets/Qr.svg";
 
-const Sidebar = () => {
+const Sidebar = ({ onItemClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [openSection, setOpenSection] = useState("Home");
-
+  const path = useLocation().pathname;
+  const isMobile = window.innerWidth < 600;
   // current route
   const currentPath = location.pathname;
 
@@ -35,31 +37,10 @@ const Sidebar = () => {
   const isHistory = currentPath.startsWith("/history");
   const isProfile = currentPath.startsWith("/profile");
 
-  const selectedChild =
-    currentPath === "/history/transactions"
-      ? "Transaction History"
-      : currentPath === "/history/settlements"
-      ? "Settlement History"
-      : null;
   const activeStyle = {
     backgroundColor: theme.palette.background.paper,
     borderRadius: "8px",
     "&:hover": { backgroundColor: theme.palette.background.paper },
-  };
-
-  // 🔹 Navigation handler
-  const handleMainClick = (section, path) => {
-    if (section === "History") {
-      setOpenSection(openSection === "History" ? null : "History");
-    } else {
-      setOpenSection(section);
-      navigate(path);
-    }
-  };
-
-  const handleChildClick = (child, path) => {
-    setOpenSection("History");
-    navigate(path);
   };
 
   return (
@@ -74,7 +55,7 @@ const Sidebar = () => {
           boxSizing: "border-box",
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.primary,
-          borderRadius: "12px",
+          borderRadius: isMobile ? 0 : "12px",
           position: "relative",
           display: "flex",
           flexDirection: "column",
@@ -87,11 +68,20 @@ const Sidebar = () => {
         <List sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
           {/* Home */}
           <ListItemButton
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              onItemClick?.();
+            }}
             sx={isHome ? activeStyle : {}}
           >
             <ListItemIcon sx={{ minWidth: 40 }}>
-              <img src={HomeIcon} alt="Home" width={22} height={22} />
+              <img
+                src={isHome ? HomeIcon : dashboard} // call isActive with "/"
+                alt="Home"
+                width={22}
+                height={22}
+                loading="lazy"
+              />
             </ListItemIcon>
             <ListItemText
               primary="Home"
@@ -103,11 +93,20 @@ const Sidebar = () => {
 
           {/* QR */}
           <ListItemButton
-            onClick={() => navigate("/qr")}
+            onClick={() => {
+              navigate("/qr");
+              onItemClick?.();
+            }}
             sx={isQR ? activeStyle : {}}
           >
             <ListItemIcon sx={{ minWidth: 40 }}>
-              <img src={QrIcon} alt="QR" width={22} height={22} />
+              <img
+                src={QrIcon}
+                alt="QR"
+                width={22}
+                height={22}
+                loading="lazy"
+              />
             </ListItemIcon>
             <ListItemText
               primary="QR"
@@ -126,9 +125,20 @@ const Sidebar = () => {
                 : "transparent",
             }}
           >
-            <ListItemButton onClick={() => navigate("/history")}>
+            <ListItemButton
+              onClick={() => {
+                navigate("/history");
+                onItemClick?.();
+              }}
+            >
               <ListItemIcon sx={{ minWidth: 40 }}>
-                <img src={HistoryIcon} alt="History" width={22} height={22} />
+                <img
+                  src={HistoryIcon}
+                  alt="History"
+                  width={22}
+                  height={22}
+                  loading="lazy"
+                />
               </ListItemIcon>
               <ListItemText
                 primary="History"
@@ -141,58 +151,56 @@ const Sidebar = () => {
 
             <Collapse in={isHistory} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItemButton
-                  sx={{
-                    pl: 6,
-                    ...(selectedChild === "Transaction History"
-                      ? activeStyle
-                      : {}),
-                  }}
-                  onClick={() => navigate("/history")}
-                >
-                  <ListItemText
-                    primary="Transaction History"
-                    primaryTypographyProps={{
-                      fontSize: "0.875rem",
-                      color:
-                        selectedChild === "Transaction History"
-                          ? theme.palette.primary.main
-                          : "inherit",
-                    }}
-                  />
-                </ListItemButton>
-
-                <ListItemButton
-                  sx={{
-                    pl: 6,
-                    ...(selectedChild === "Settlement History"
-                      ? activeStyle
-                      : {}),
-                  }}
-                  onClick={() => navigate("/history")}
-                >
-                  <ListItemText
-                    primary="Settlement History"
-                    primaryTypographyProps={{
-                      fontSize: "0.875rem",
-                      color:
-                        selectedChild === "Settlement History"
-                          ? theme.palette.primary.main
-                          : "inherit",
-                    }}
-                  />
-                </ListItemButton>
+                {[
+                  { label: "Transaction History", path: "/history" },
+                  { label: "Settlement History", path: "/history" },
+                ].map((child) => (
+                  <ListItemButton
+                    key={child.label}
+                    sx={{ pl: 6, ...(path === child.path ? activeStyle : {}) }}
+                    onClick={() => navigate(child.path)}
+                  >
+                    <ListItemIcon sx={{ minWidth: 40 }}>
+                      <img
+                        src={HistoryIcon}
+                        alt={child.label}
+                        width={18}
+                        height={18}
+                        loading="lazy"
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={child.label}
+                      primaryTypographyProps={{
+                        fontSize: "0.875rem",
+                        color:
+                          path === child.path
+                            ? theme.palette.primary.main
+                            : "inherit",
+                      }}
+                    />
+                  </ListItemButton>
+                ))}
               </List>
             </Collapse>
           </Box>
 
           {/* Profile */}
           <ListItemButton
-            onClick={() => navigate("/profile")}
+            onClick={() => {
+              navigate("/profile");
+              onItemClick?.();
+            }}
             sx={isProfile ? activeStyle : {}}
           >
             <ListItemIcon sx={{ minWidth: 40 }}>
-              <img src={ProfileIcon} alt="Profile" width={22} height={22} />
+              <img
+                src={ProfileIcon}
+                alt="Profile"
+                width={22}
+                height={22}
+                loading="lazy"
+              />
             </ListItemIcon>
             <ListItemText
               primary="Profile"
@@ -214,8 +222,8 @@ const Sidebar = () => {
           py: 2,
           margin: "0 0rem .05rem .05rem",
           borderTop: `1px solid ${theme.palette.divider}`,
-          borderBottomRightRadius: "12px",
-          borderBottomLeftRadius: "12px",
+          borderBottomRightRadius: isMobile ? 0 : "12px",
+          borderBottomLeftRadius: isMobile ? 0 : "12px",
         }}
       >
         <img
@@ -228,4 +236,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);

@@ -1,12 +1,11 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Divider,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 const ProfileCard = () => {
   const theme = useTheme();
@@ -147,4 +146,4 @@ const ProfileCard = () => {
   );
 };
 
-export default ProfileCard;
+export default React.memo(ProfileCard);

@@ -1,27 +1,51 @@
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
-import QrPage from "../pages/QrPage";
-import History from "../pages/History";
-import Profile from "../pages/Profile";
+import { lazy, Suspense } from "react";
 import Layout from "../layout/Layout";
 import { TransactionProvider } from "../contexts/TransactionContext";
+
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const QrPage = lazy(() => import("../pages/QrPage"));
+const History = lazy(() => import("../pages/History"));
+const Profile = lazy(() => import("../pages/Profile"));
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* All routes inside Layout share Navbar + Sidebar */}
       <Route element={<Layout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/qr" element={<QrPage />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading Dashboard...</div>}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/qr"
+          element={
+            <Suspense fallback={<div>Loading QR Page...</div>}>
+              <QrPage />
+            </Suspense>
+          }
+        />
         <Route
           path="/history"
           element={
-            <TransactionProvider>
-              <History />
-            </TransactionProvider>
+            <Suspense fallback={<div>Loading History...</div>}>
+              <TransactionProvider>
+                <History />
+              </TransactionProvider>
+            </Suspense>
           }
         />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<div>Loading Profile...</div>}>
+              <Profile />
+            </Suspense>
+          }
+        />
       </Route>
     </Routes>
   );

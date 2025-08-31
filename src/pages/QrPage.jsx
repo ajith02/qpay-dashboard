@@ -1,4 +1,5 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import React from "react";
+import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
 import ManageQrPos from "../components/qr/ManageQrPos";
 import QRManager from "../components/qr/QRManager";
 

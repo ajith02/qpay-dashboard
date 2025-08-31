@@ -1,16 +1,14 @@
-import {
-    ContentCopy as CopyIcon
-} from "@mui/icons-material";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import {
-    Box,
-    Button,
-    Card,
-    IconButton,
-    Typography,
-    useTheme,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+
 import LogoImage from "../../assets/logo.png";
 import QRImage from "../../assets/qr.png";
 
@@ -82,7 +80,7 @@ const ManageQrPos = () => {
               sx={{ color: "#61CE70" }}
               onClick={() => navigator.clipboard.writeText("9876543210@qpoy")}
             >
-              <CopyIcon sx={{fontSize: "0.9rem"}} />
+              <ContentCopyIcon sx={{fontSize: "0.9rem"}} />
             </IconButton>
           </Box>
 

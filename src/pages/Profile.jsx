@@ -1,18 +1,24 @@
 import BannerImage from "../assets/profileBanner.png";
 import QPayBanner from "../components/common/QPayBanner";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import WorkIcon from "@mui/icons-material/Work";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileCard from "../components/profile/ProfileCard";
-import { Box } from "@mui/material";
 import Services from "../components/profile/Services";
-import { VolumeUp, PointOfSale } from "@mui/icons-material";
-import SmartSpeakers from "../assets/smartSpeakers.png";
+
+import {
+  Box
+} from "@mui/material";
+
+import {
+  AccountBalance as AccountBalanceIcon,
+  ShoppingCart as ShoppingCartIcon,
+  VerifiedUser as VerifiedUserIcon,
+  Work as WorkIcon
+} from "@mui/icons-material";
+
+import Language from "../assets/language.png";
 import POS from "../assets/pos.png";
 import Settings from "../assets/settings.png";
+import SmartSpeakers from "../assets/smartSpeakers.png";
 import User from "../assets/users.png";
-import Language from "../assets/language.png";
 
 const Profile = () => {
   const cards = [

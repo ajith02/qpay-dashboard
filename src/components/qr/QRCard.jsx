@@ -56,7 +56,7 @@ const QRCard = ({
               p: 1,
             }}
           >
-            <img src={qrImage} alt="QR Code" width={80} />
+            <img src={qrImage} alt="QR Code" width={80} loading="lazy"/>
           </Box>
 
           {/* Text content */}
