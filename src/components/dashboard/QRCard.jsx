@@ -5,7 +5,7 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import QRImage from "../../assets/qr.png";
+import QRImage from "../../assets/QR.png";
 import { useNavigate } from "react-router-dom";
 
 const QRCard = () => {
