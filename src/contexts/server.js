@@ -2,48 +2,38 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors";
-import https from "https";
 
 const app = express();
 const PORT = 5000;
 
-// Allow requests from React app
+// Allow requests from your React app
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
-// Proxy endpoint for transactions
+// Proxy endpoint
 app.get("/api/transactions", async (req, res) => {
-  const page = req.query.page || 0;
-  const service_id = req.query.service_id || 111;
-  const authHeader = req.headers.authorization;
+  const { service_id = 111, page = 0 } = req.query;
+  const token = process.env.VITE_WALLET_TOKEN;
 
-  if (!authHeader) {
-    return res.status(401).json({ error: "Authorization header is required" });
+  if (!token) {
+    return res.status(401).json({ error: "Server token not set" });
   }
-
-  // ⚠️ Ignore SSL certificate and hostname errors (for dev/testing)
-  const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,          // ignore invalid cert
-    checkServerIdentity: () => undefined // ignore hostname mismatch
-  });
 
   try {
     const response = await axios.get(
-      "http://64.227.189.27/wallet/api/v1/transaction_history", // IP backend
+      "http://64.227.189.27/wallet/api/v1/transaction_history",
       {
         headers: {
-          Authorization: authHeader,   // pass Bearer token
+          Authorization: `Bearer ${token}`,
           "Cache-Control": "no-cache",
         },
         params: { service_id, page },
-        httpsAgent,
       }
     );
 
-    // Forward backend response to React
     res.json(response.data);
   } catch (err) {
-    console.error("Axios full error:", err.toJSON ? err.toJSON() : err);
+    console.error("Proxy error:", err.message);
     res.status(err.response?.status || 500).json({
       error: err.response?.data || err.message || "Something went wrong",
     });
@@ -51,5 +41,5 @@ app.get("/api/transactions", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
+  console.log(`Proxy server running at http://localhost:${PORT}`);
 });
