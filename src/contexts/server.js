@@ -29,7 +29,7 @@ app.get("/api/transactions", async (req, res) => {
 
   try {
     const response = await axios.get(
-      "https://64.227.189.27/wallet/api/v1/transaction_history", // IP backend
+      "http://64.227.189.27/wallet/api/v1/transaction_history", // IP backend
       {
         headers: {
           Authorization: authHeader,   // pass Bearer token

@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await axios.get(
-      "https://64.227.189.27/wallet/api/v1/transaction_history",
+      "http://64.227.189.27/wallet/api/v1/transaction_history",
       {
         headers: {
           Authorization: `Bearer ${token}`,
