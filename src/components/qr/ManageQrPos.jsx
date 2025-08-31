@@ -10,7 +10,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
 import LogoImage from "../../assets/logo.png";
-import QRImage from "../../assets/QR.png";
+import QRImage from "../../assets/Qr.png";
 
 const ManageQrPos = () => {
   const theme = useTheme();
